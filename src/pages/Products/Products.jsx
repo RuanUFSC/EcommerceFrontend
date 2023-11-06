@@ -1,6 +1,6 @@
 import './Products.css'
 import Sidebar from '../../components/Sidebar/Sidebar'
-import Carousel from '../Carousel.jsx'
+import Carousel from '../../components/Carousel/Carousel'
 
 const Products = () => {
 

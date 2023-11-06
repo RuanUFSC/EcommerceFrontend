@@ -12,6 +12,7 @@ const Navbar = () => {
           {logado ? <button onClick={() => logout()}>Sair</button> : ''}
             <Link to="/">Home</Link>
             <Link to="/produtos">Catalogo</Link>
+            <Link to="/register">Cadastrar</Link>
             <Link to="/user">Minha Conta</Link>
         </nav>
       </>

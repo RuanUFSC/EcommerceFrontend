@@ -2,3 +2,7 @@ ul {
     display: flex;
     flex-direction: column;
 }
+
+.imagem {
+    margin: auto;
+}

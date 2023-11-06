@@ -7,6 +7,7 @@ import User from './pages/User/User.jsx'
 import ProductDetails from './pages/ProductDetails/ProductDetails.jsx'
 import Login from './pages/Login/Login.jsx'
 import Layout from './pages/Layout.jsx'
+import Register from './pages/Register/Register.jsx'
 
 function Router() {
   
@@ -32,6 +33,10 @@ function Router() {
         {
           path: "/user",
           element: <User />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         }
       ],
     },
