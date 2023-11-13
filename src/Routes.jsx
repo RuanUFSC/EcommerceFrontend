@@ -1,7 +1,7 @@
-import { LoginContext } from './contexts/LoginContext.jsx';
+import { GeneralContext } from './contexts/GeneralContext.jsx';
 import { useContext } from 'react';
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Home from './pages/Home/Home.jsx'
+
 import Products from './pages/Products/Products.jsx'
 import User from './pages/User/User.jsx'
 import ProductDetails from './pages/ProductDetails/ProductDetails.jsx'
@@ -13,7 +13,7 @@ import EditPage from './pages/Edit/EditPage.jsx'
 
 function Router() {
   
-  const { logado } = useContext(LoginContext);
+  const { logado } = useContext(GeneralContext);
 
   const router = createBrowserRouter([
     {
@@ -22,10 +22,6 @@ function Router() {
       children: [
         {
           path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/produtos",
           element: <Products />,
         },
         {

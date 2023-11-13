@@ -1,32 +1,19 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import "./ProductDetails.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import download from "../../assets/download.png";
+import { GeneralContext } from '../../contexts/GeneralContext.jsx'
+
 
 const ProductDetails = () => {
   const { product } = useParams();
-  const [produtos, setProdutos] = useState([]);
-  console.log(product);
+  const { produtos, fetchProdutos } = useContext(GeneralContext);
   const produtoAtual = produtos.find((item, index) => index == product);
-  console.log(produtoAtual);
 
   useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch(
-          "https://cervejaria-backend.onrender.com/produtos/consultar-produtos"
-        );
-        const data = await response.json();
-        setProdutos(data.data);
-        console.log(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchProdutos();
-  }, [product]);
+  }, []);
 
   return (
     <>

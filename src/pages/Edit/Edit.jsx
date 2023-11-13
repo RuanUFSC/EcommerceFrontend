@@ -1,29 +1,19 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import "react-toastify/dist/ReactToastify.css"
 import { Link } from "react-router-dom"
 import "./Edit.css"
 import { ToastContainer, toast } from "react-toastify"
+import { GeneralContext } from '../../contexts/GeneralContext.jsx'
+
 
 function ProdutoForm() {
-  const [produtos, setProdutos] = useState([])
+  const { produtos, fetchProdutos } = useContext(GeneralContext);
 
   useEffect(() => {
     fetchProdutos()
   }, [])
   
-  const fetchProdutos = async () => {
-    try {
-      const response = await fetch(
-        "https://cervejaria-backend.onrender.com/produtos/consultar-produtos"
-      )
-      const data = await response.json()
-      setProdutos(data.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const removeProduct = async (produto) => {
     try {
       await axios.delete(`https://cervejaria-backend.onrender.com/produtos/apagar-produto/${produto}`)

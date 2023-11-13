@@ -1,26 +1,14 @@
 import Carousel from "react-bootstrap/Carousel";
 import "./Carousel.css";
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import download from "../../assets/download.png";
 import { Link } from "react-router-dom";
+import { GeneralContext } from "../../contexts/GeneralContext.jsx";
 
-function UncontrolledExample() {
-  const [produtos, setProdutos] = useState([]);
+function CarouselComponent() {
+  const { produtos, fetchProdutos } = useContext(GeneralContext);
 
   useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch(
-          "https://cervejaria-backend.onrender.com/produtos/consultar-produtos"
-        );
-        const data = await response.json();
-        setProdutos(data.data);
-        console.log(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchProdutos();
   }, []);
 
@@ -46,4 +34,4 @@ function UncontrolledExample() {
   );
 }
 
-export default UncontrolledExample;
+export default CarouselComponent;

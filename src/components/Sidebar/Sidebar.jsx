@@ -1,34 +1,24 @@
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from "react"
-import './Sidebar.css'
+import { Link } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import "./Sidebar.css";
+import { GeneralContext } from "../../contexts/GeneralContext.jsx";
 
 const Sidebar = () => {
-  const [produtos, setProdutos] = useState([]);  
+  const { produtos, fetchProdutos } = useContext(GeneralContext);
 
   useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch(
-          "https://cervejaria-backend.onrender.com/produtos/consultar-produtos"
-        );
-        const data = await response.json();
-        setProdutos(data.data);
-        console.log(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchProdutos();
   }, []);
 
-    return (
-      <ul>
-        {produtos.map((item, index) => 
-        <Link to={`/detalhes/${index}`} key={index}>{item.nome}</Link>          
-        )}
-      </ul>
-    )
-  }
-  
-export default Sidebar
+  return (
+    <ul>
+      {produtos.map((item, index) => (
+        <Link to={`/detalhes/${index}`} key={index}>
+          {item.nome}
+        </Link>
+      ))}
+    </ul>
+  );
+};
+
+export default Sidebar;

@@ -1,14 +1,14 @@
 import './Footer.css'
 import { useContext }  from "react";
-import { LoginContext } from '../../contexts/LoginContext.jsx'
+import { GeneralContext } from '../../contexts/GeneralContext.jsx'
 
 const Footer = () => {
-  const { logado } = useContext(LoginContext);
+  const { logado } = useContext(GeneralContext);
 
     return (
       <>
         <footer>
-          <h2>Logado: { JSON.stringify(logado) }</h2>
+          <span>Fabrica de carros LTDA - 2023</span>
         </footer>
       </>
     )

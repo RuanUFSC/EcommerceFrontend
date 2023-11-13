@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Edit.css";
+import { GeneralContext } from '../../contexts/GeneralContext.jsx'
 
 function ProdutoForm() {
-  const { product } = useParams();
+  const { product } = useParams();  
+  const { produtos } = useContext(GeneralContext);
 
   const [produto, setProduto] = useState({
     nome: "",
@@ -16,21 +18,9 @@ function ProdutoForm() {
 
   const [selectedOption, setSelectedOption] = useState('1')
 
-  useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch(
-          "https://cervejaria-backend.onrender.com/produtos/consultar-produtos"
-        );
-        const respostaJson = await response.json();
-        const produtoFind = respostaJson.data.find(produto => produto.produto_id == product)
+  useEffect(() => {    
+        const produtoFind = produtos.find(produto => produto.produto_id == product)
         setProduto(produtoFind)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchProdutos();
   }, []);
 
   const handleChange = (e) => {

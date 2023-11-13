@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { LoginContext } from '../../contexts/LoginContext';
+import { GeneralContext } from '../../contexts/GeneralContext';
 import { useNavigate } from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 const Login = () => {
@@ -7,7 +7,7 @@ const Login = () => {
   const [ password, setPassword ] = useState('');
   const navigate = useNavigate();
 
-  const { login } = useContext(LoginContext);
+  const { login } = useContext(GeneralContext);
 
   const realizarLogin = () => {
     if(usuario == "ruan" && password == "123"){
