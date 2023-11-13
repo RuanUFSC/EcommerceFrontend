@@ -8,6 +8,8 @@ import ProductDetails from './pages/ProductDetails/ProductDetails.jsx'
 import Login from './pages/Login/Login.jsx'
 import Layout from './pages/Layout.jsx'
 import Register from './pages/Register/Register.jsx'
+import Edit from './pages/Edit/Edit.jsx'
+import EditPage from './pages/Edit/EditPage.jsx'
 
 function Router() {
   
@@ -37,6 +39,14 @@ function Router() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/edit",
+          element: <Edit />,
+        },
+        {
+          path: "/edit/:product",
+          element: <EditPage />,
         }
       ],
     },
