@@ -9,35 +9,27 @@ function ProdutoForm() {
     nome: "",
     preco: 0,
     descricao: "",
-  });
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduto({
       ...produto,
-      [name]: value,
+      [name]: value
     });
-  };
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://cervejaria-backend.onrender.com/produtos/criar-produto",
-        produto,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      console.log("Produto criado:", response.data);
+        produto, { headers: { "Content-Type": "application/json" }}
+      )
       toast.success("Produto criado com sucesso!");
     } catch (error) {
-      toast.error("Erro ao criar o produto. Por favor, tente novamente.");
-      console.error("Erro ao criar o produto:", error);
+      toast.error("Erro ao criar o produto. Por favor, tente novamente.")
     }
   };
 
