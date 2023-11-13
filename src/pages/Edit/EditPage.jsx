@@ -7,11 +7,14 @@ import "./Edit.css";
 
 function ProdutoForm() {
   const { product } = useParams();
+
   const [produto, setProduto] = useState({
     nome: "",
     preco: 0,
     descricao: "",
   });
+
+  const [selectedOption, setSelectedOption] = useState('')
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -53,6 +56,11 @@ function ProdutoForm() {
     }
   };
 
+  const handleOptionChange = (changeEvent) => {
+    setSelectedOption(changeEvent.target.value);
+  }
+  
+
   return (
     <div>
       <ToastContainer />
@@ -76,6 +84,27 @@ function ProdutoForm() {
             onChange={handleChange}
           />
         </div>
+        
+        <div className="radio">
+          <label>
+            <input type="radio" value="option1" checked={selectedOption === 'option1'} onChange={(e) => handleOptionChange(e)}/>
+            Faixa 1 - até R$50.000
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option2" checked={selectedOption === 'option2'} onChange={(e) => handleOptionChange(e)}/>
+            Faixa 2 - até R$500.000
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option3" checked={selectedOption === 'option3'} onChange={(e) => handleOptionChange(e)}/>
+            Faixa 3 - até R$5.000.000
+          </label>
+        </div>
+
+
         <div>
           <label>Descrição:</label>
           <textarea
