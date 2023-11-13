@@ -9,7 +9,13 @@
     border-radius: 5px;
     background-color: #f9f9f9;
   }
-  
+
+  /* Estilo para o contêiner do formulário */
+.container-todos {
+  margin: 20px
+}
+
+
   /* Estilo para os rótulos do formulário */
   label {
     display: block;
