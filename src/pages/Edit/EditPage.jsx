@@ -14,7 +14,7 @@ function ProdutoForm() {
     descricao: "",
   });
 
-  const [selectedOption, setSelectedOption] = useState('')
+  const [selectedOption, setSelectedOption] = useState('1')
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -35,10 +35,19 @@ function ProdutoForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let range = 1;
     setProduto({
       ...produto,
       [name]: value,
-    });
+    })
+    if(value > 5000000) {
+      range = 4
+    } else if(value > 500000) {
+      range = 3
+    } else if(value > 50000) {
+      range = 2
+    }
+    setSelectedOption(range)
   };
 
   const handleSubmit = async (e) => {
@@ -54,17 +63,12 @@ function ProdutoForm() {
     } catch (error) {
       toast.error("Erro ao editar o produto. Por favor, tente novamente.");
     }
-  };
-
-  const handleOptionChange = (changeEvent) => {
-    setSelectedOption(changeEvent.target.value);
-  }
-  
+  }  
 
   return (
     <div>
       <ToastContainer />
-      <h1>Editar o Produto {product}</h1>
+      <h3>Editar o Produto {product}</h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nome:</label>
@@ -87,20 +91,26 @@ function ProdutoForm() {
         
         <div className="radio">
           <label>
-            <input type="radio" value="option1" checked={selectedOption === 'option1'} onChange={(e) => handleOptionChange(e)}/>
+            <input type="radio" value="1" checked={selectedOption == '1'}/>
             Faixa 1 - até R$50.000
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value="option2" checked={selectedOption === 'option2'} onChange={(e) => handleOptionChange(e)}/>
+            <input type="radio" value="2" checked={selectedOption == '2'}/>
             Faixa 2 - até R$500.000
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value="option3" checked={selectedOption === 'option3'} onChange={(e) => handleOptionChange(e)}/>
+            <input type="radio" value="3" checked={selectedOption == '3'}/>
             Faixa 3 - até R$5.000.000
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="4" checked={selectedOption == '4'}/>
+            Faixa 4 - Acima de R$5.000.000
           </label>
         </div>
 
