@@ -135,7 +135,6 @@ function ProdutoForm() {
           <button type="submit">Criar Produto</button>
         </div>
       </form>
-      {/* <button className="container-todos" onClick={() => adicionar()}>Adicionar vários</button> */}
     </div>
   );
 }
